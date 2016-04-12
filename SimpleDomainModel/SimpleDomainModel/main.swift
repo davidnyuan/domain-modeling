@@ -27,34 +27,26 @@ public struct Money {
   public var amount : Int
   public var currency : String
   
-  public mutating func convert(to: String) -> Money {
+  public func convert(to: String) -> Money {
     let currencyConverter: [String: Double] = ["USD": 1, "GBP": 0.5, "EUR": 1.5, "CAN": 1.25]
-    amount = Int(Double(amount) * (currencyConverter[to]! / currencyConverter[currency]!))
-    currency = to
-    return(Money(amount: self.amount, currency: self.currency))
+    return(Money(amount: Int(Double(amount) * (currencyConverter[to]! / currencyConverter[currency]!)), currency: to))
     }
   
-  public mutating func add(to: Money) -> Money {
+  public func add(to: Money) -> Money {
     if(currency == to.currency) {
-        amount += to.amount
-        return(Money(amount: self.amount, currency: self.currency))
+        return(Money(amount: (amount + to.amount), currency: self.currency))
     } else {
         // Different currencies
-        amount = convert(to.currency).amount
-        amount += to.amount
-        return(Money(amount: self.amount, currency: self.currency))
+        return(Money(amount: (convert(to.currency).amount + to.amount), currency: to.currency))
     }
   }
     
-  public mutating func subtract(from: Money) -> Money {
+  public func subtract(from: Money) -> Money {
     if(currency == from.currency) {
-        amount = amount - from.amount
-        return(Money(amount: self.amount, currency: self.currency))
+        return(Money(amount: (amount - from.amount), currency: self.currency))
     } else {
         // Different currencies
-        amount = convert(from.currency).amount
-        amount = amount - from.amount
-        return(Money(amount: self.amount, currency: self.currency))
+        return(Money(amount: (convert(from.currency).amount - from.amount), currency: from.currency))
     }
   }
 }
@@ -78,11 +70,20 @@ public class Job {
   public func calculateIncome(hours: Int) -> Int {
     switch type {
     case .Hourly(let value):
-        return(hours * Int(value))
+        return(Int(Double(hours) * (value)))
     case .Salary(let value):
         return value
     }
   }
+    
+    public func raise(amt : Double) {
+        switch type {
+        case .Hourly(let value):
+            self.type = JobType.Hourly(value + amt)
+        case .Salary(let value):
+            self.type = JobType.Salary(value + Int(amt))
+        }
+    }
 }
 
 ////////////////////////////////////
@@ -90,41 +91,43 @@ public class Job {
 //
 
 public class Person {
-  public var firstName : String = ""
-  public var lastName : String = ""
-  public var age : Int = 0
+    var firstName : String = ""
+    var lastName : String = ""
+    var age : Int = 0
+    private var _job: Job?
+    private var _spouse: Person?
+    
+    public var job: Job? {
+        get {
+            return self._job
+        }
+        set(value) {
+            if(age >= 16) {
+                self._job = value
+            } else {
+                self._job = nil
+            }
+        }
+    }
+    
+    public var spouse : Person? {
+        get {
+            return self._spouse
+        }
+        set(value) {
+            if(self.age >= 18) {
+                self._spouse = value
+            } else {
+                self._spouse = nil
+            }
+        }
+    }
 
-  public var job : Job? {
-    get {
-        return self.job
+    public init(firstName : String, lastName: String, age : Int) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.age = age
     }
-    set(inputJob) {
-        if age >= 16 {
-            self.job = Job(title: inputJob!.title, type: inputJob!.type)
-        } else {
-            self.job = nil
-        }
-    }
-  }
-  
-  public var spouse : Person? {
-    get {
-        return self.spouse
-    }
-    set(value) {
-        if age >= 18 {
-            self.spouse = Person(firstName: value!.firstName, lastName: value!.lastName, age: value!.age)
-        } else {
-            self.spouse = nil
-        }
-    }
-  }
-  
-  public init(firstName : String, lastName: String, age : Int) {
-    self.firstName = firstName
-    self.lastName = lastName
-    self.age = age
-  }
   
   public func toString() -> String {
     return("[Person: firstName:\(firstName) lastName:\(lastName) age:\(age) job:\(job) spouse:\(spouse)]")
@@ -155,7 +158,15 @@ public class Family {
             canhave = true
         }
         if(canhave) {
-            members.append(Person(firstName: child.firstName, lastName: members[0].lastName, age: child.age))
+            var notalreadyin = true
+            for person: Person in members {
+                if(person.firstName == child.firstName) {
+                    notalreadyin = false
+                }
+            }
+            if(notalreadyin) {
+                members.append(child)
+            }
         }
     }
     return canhave
@@ -163,9 +174,11 @@ public class Family {
   
   public func householdIncome() -> Int {
     var totalIncome = 0
-    for person: Person in members {
+    for person in members {
         if(person.job != nil) {
             totalIncome += person.job!.calculateIncome(2000)
+            print(person.firstName)
+            print(person.job!.calculateIncome(2000))
         }
     }
     return totalIncome
