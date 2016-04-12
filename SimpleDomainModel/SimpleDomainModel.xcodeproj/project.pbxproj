@@ -28,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5BABF8651CBC7B0F00F34947 /* main.swift.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = main.swift.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6891141CB5D8E40018C340 /* SimpleDomainModel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleDomainModel; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6891171CB5D8E40018C340 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FE6891221CB5D90B0018C340 /* SimpleDomainModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleDomainModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +40,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5BABF8621CBC7B0F00F34947 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FE6891111CB5D8E40018C340 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +78,7 @@
 			children = (
 				FE6891141CB5D8E40018C340 /* SimpleDomainModel */,
 				FE6891221CB5D90B0018C340 /* SimpleDomainModelTests.xctest */,
+				5BABF8651CBC7B0F00F34947 /* main.swift.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +106,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5BABF8641CBC7B0F00F34947 /* main.swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BABF86C1CBC7B0F00F34947 /* Build configuration list for PBXNativeTarget "main.swift" */;
+			buildPhases = (
+				5BABF8611CBC7B0F00F34947 /* Sources */,
+				5BABF8621CBC7B0F00F34947 /* Frameworks */,
+				5BABF8631CBC7B0F00F34947 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = main.swift;
+			productName = main.swift;
+			productReference = 5BABF8651CBC7B0F00F34947 /* main.swift.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FE6891131CB5D8E40018C340 /* SimpleDomainModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE68911B1CB5D8E40018C340 /* Build configuration list for PBXNativeTarget "SimpleDomainModel" */;
@@ -141,6 +167,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Ted Neward";
 				TargetAttributes = {
+					5BABF8641CBC7B0F00F34947 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					FE6891131CB5D8E40018C340 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -163,11 +192,19 @@
 			targets = (
 				FE6891131CB5D8E40018C340 /* SimpleDomainModel */,
 				FE6891211CB5D90B0018C340 /* SimpleDomainModelTests */,
+				5BABF8641CBC7B0F00F34947 /* main.swift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5BABF8631CBC7B0F00F34947 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FE6891201CB5D90B0018C340 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -178,6 +215,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5BABF8611CBC7B0F00F34947 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FE6891101CB5D8E40018C340 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +245,28 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5BABF86A1CBC7B0F00F34947 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = main.swift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "yuand.main-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5BABF86B1CBC7B0F00F34947 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = main.swift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "yuand.main-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		FE6891191CB5D8E40018C340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -322,6 +388,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5BABF86C1CBC7B0F00F34947 /* Build configuration list for PBXNativeTarget "main.swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BABF86A1CBC7B0F00F34947 /* Debug */,
+				5BABF86B1CBC7B0F00F34947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FE68910F1CB5D8E40018C340 /* Build configuration list for PBXProject "SimpleDomainModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

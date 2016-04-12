@@ -14,9 +14,19 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>main.swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5BABF8641CBC7B0F00F34947</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>FE6891131CB5D8E40018C340</key>
 		<dict>
 			<key>primary</key>

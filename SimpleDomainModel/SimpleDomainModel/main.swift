@@ -155,10 +155,10 @@ public class Family {
             canhave = true
         }
         if(canhave) {
-            members.append(Person(firstName: child.firstName, lastName: child.lastName, age: child.age))
+            members.append(Person(firstName: child.firstName, lastName: members[0].lastName, age: child.age))
         }
     }
-    return(canhave)
+    return canhave
   }
   
   public func householdIncome() -> Int {
@@ -168,7 +168,7 @@ public class Family {
             totalIncome += person.job!.calculateIncome(2000)
         }
     }
-    return(totalIncome)
+    return totalIncome
   }
 }
 
